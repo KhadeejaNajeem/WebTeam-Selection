@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Selling Website - Shoe Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Shoe Details</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shoe-models.html">Shoe Models</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Shoe Details</h2>
+        <div id="shoeDetails">
+            <!-- Shoe details will be displayed here -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Shoe Selling Website</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            // Parse the URL to get the shoe parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const shoe = urlParams.get('shoe');
+
+            // Get the shoe details based on the parameter value
+            const shoeDetails = getShoeDetails(shoe);
+
+            // Display the shoe details
+            displayShoeDetails(shoeDetails);
+        };
+
+        // Function to get shoe details based on the selected shoe
+        function getShoeDetails(shoe) {
+            // Example data for demonstration purposes
+            const shoes = {
+                '1': {
+                    name: 'Sports shoeware',
+                    price: '$25 - $50',
+                    colors: ['Red', 'Blue', 'Green'],
+                    sizes: ['7', '8', '9', '10']
+                },
+                '2': {
+                    name: 'Casual shoeware',
+                    price: '$30 - $60',
+                    colors: ['Biege', 'Brown', 'Black'],
+                    sizes: ['8', '9', '10', '11']
+                },
+                '3': {
+                    name: 'Formal shoeware',
+                    price: '$50 - $70',
+                    colors: ['Brown', 'Black', 'Grey'],
+                    sizes: ['7', '8', '9', '10', '11']
+                }
+            };
+
+            return shoes[shoe];
+        }
+
+        // Function to display shoe details on the page
+        function displayShoeDetails(shoeDetails) {
+            const shoeDetailsContainer = document.getElementById('shoeDetails');
+            shoeDetailsContainer.innerHTML = `
+                <h3>${shoeDetails.name}</h3>
+                <p><strong>Price:</strong> ${shoeDetails.price}</p>
+                <p><strong>Colors Available:</strong> ${shoeDetails.colors.join(', ')}</p>
+                <p><strong>Sizes Available:</strong> ${shoeDetails.sizes.join(', ')}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
